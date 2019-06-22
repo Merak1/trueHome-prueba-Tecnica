@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+
 class Propiedades extends Component {
     state = {
         veces: 0,
@@ -16,7 +17,6 @@ class Propiedades extends Component {
         //     .then(res => {
         //         console.log(res, "res")
         //         this.setState({ propiedades: res.data });
-
         //     })
 
 
@@ -49,10 +49,9 @@ class Propiedades extends Component {
     getPropiedades() {
         axios.get('http://localhost:2000/propiedades  ')
             .then(res => {
-                console.log(res, "res")
-                console.log(res.data, "res.data ");
-                console.log(res.data[1], "res.data1 ");
-
+                // console.log(res, "res")
+                // console.log(res.data, "res.data ");
+                // console.log(res.data[1], "res.data1 ");
 
                 this.setState({ propiedades: res.data });
 
@@ -60,12 +59,18 @@ class Propiedades extends Component {
 
             })
     }
-    getNumeroPropiedades() {
-        const veces = Propiedades.length
-        console.log(veces);
-        // console.log(this.state.propiedades, "propiedades state");
-
-
+    // getNumeroPropiedades() {
+    //     const veces = Propiedades.length
+    //     // console.log(veces);
+    //     // console.log(this.state.propiedades, "propiedades state");
+    // }
+    editarPropiedad = (id) => {
+        const resul = id
+        console.log("la buema", resul);
+    }
+    eliminarPropiedad = (id) => {
+        const resul = id
+        console.log("eliminar", resul)
     }
     render() {
         return (
@@ -76,9 +81,15 @@ class Propiedades extends Component {
                         <div key={propiedades.id} style={{ maxWidth: '20rem' }} className="card text-white bg-secondary mb-3" >
                             <div style={{ display: 'flex' }} className="card-header">{propiedades.titulo}
                                 <div style={{ marginLeft: "auto" }}>
-                                    <button type="button" className="btn btn-primary">edit</button>
-                                    <button type="button" className="btn btn-danger">x</button>
+                                    <button
+                                        onClick={() => this.editarPropiedad(propiedades.id)}
+                                        type="button" className="btn btn-primary">edit</button>
+                                    <button
+                                        onClick={() => this.eliminarPropiedad(propiedades.id)}
+                                        type="button" className="btn btn-danger">x</button>
                                 </div>
+
+                                {/* <Boton titulo={propiedades.nombre} /> */}
                             </div>
                             <div className="card-body">
                                 <p className="card-title"> {propiedades.direccion} </p>

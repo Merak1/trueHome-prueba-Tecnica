@@ -5,7 +5,6 @@ class editarPrecio extends Component {
 
     onSubmit(event) {
         event.preventDefault();
-
     }
     render() {
         return (
